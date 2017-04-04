@@ -58,9 +58,9 @@
 #'   \code{a0}}
 #'  }
 #' @references
-#'   Shah, R. D. (2016) \emph{Modelling interactions in high-dimensional data with
-#'   Backtracking. JMLR, to appear.}
-#'   \url{http://www.statslab.cam.ac.uk/~rds37/papers/shah16.pdf}
+#'   Shah, R. D. (2016) \emph{Shah, R. D. (2016) Modelling interactions in high-dimensional
+#'   data with Backtracking. JMLR, 17, 1-31}
+#'   \url{www.jmlr.org/papers/volume17/13-515/13-515.pdf}
 #' @seealso
 #'   \code{\link{predict.BT}}, \code{\link{coef.BT}} methods and the \code{\link{cvLassoBT}}
 #'   function.

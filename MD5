@@ -1,7 +1,7 @@
-98ef6d65a42b9f78937fe6ef3d61d3c4 *DESCRIPTION
-6b36e68e115aae26eec3127fd5b8ddd1 *NAMESPACE
-2fa81a3feff16d2a24d70a1d2d528c94 *R/LassoBT.R
-d18a6e2a7e3e9345de349c674f882fa6 *R/RcppExports.R
+8e9ef0938b84ee835c6cd04afcb38948 *DESCRIPTION
+9aecd41d9dcbbc34926687b44f0f2c37 *NAMESPACE
+f51fd576d8b26216c3b8feb5519df6b7 *R/LassoBT.R
+f23f9ec9545f5b6bda8f95fd401aa0a3 *R/RcppExports.R
 a80f571bcccb5d1dbf50f49e324c0ed9 *R/aux_functions.R
 45d3a2c06d75b2f18794de43e275adeb *R/cvBT.R
 0bacc17fd2abc9835ee66ae9dac1494a *R/predict_BT.R
@@ -9,4 +9,5 @@ a80f571bcccb5d1dbf50f49e324c0ed9 *R/aux_functions.R
 8777d074acf420ac78457d94c0f0ba98 *man/cvLassoBT.Rd
 81d9ef1962a69e1f5b14ed61dd6b49f5 *man/predict.BT.Rd
 fd77b1871ce8c5a8fd970ee8922bc9d4 *src/ExportedFunctions.cpp
-de8d5e4be1b696824d42d52e8df6f78f *src/RcppExports.cpp
+505b4edefd4444af00cc4da40f9bb233 *src/LassoBacktracking_init.c
+574f06f948975130c0c5caff63605491 *src/RcppExports.cpp
