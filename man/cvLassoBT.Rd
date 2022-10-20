@@ -4,9 +4,17 @@
 \alias{cvLassoBT}
 \title{Cross-validation for \code{LassoBT}}
 \usage{
-cvLassoBT(x, y, lambda = NULL, nlambda = 100L,
-  lambda.min.ratio = ifelse(nobs < nvars, 0.01, 1e-04), nfolds = 5L,
-  nperms = 1L, mc.cores = 1L, ...)
+cvLassoBT(
+  x,
+  y,
+  lambda = NULL,
+  nlambda = 100L,
+  lambda.min.ratio = ifelse(nobs < nvars, 0.01, 1e-04),
+  nfolds = 5L,
+  nperms = 1L,
+  mc.cores = 1L,
+  ...
+)
 }
 \arguments{
 \item{x}{input matrix of dimension nobs by nvars; each row is an observation
@@ -16,7 +24,7 @@ vector.}
 
 \item{lambda}{user supplied \code{lambda} sequence of decreasing penalty
 parameters. Typical usage is to allow the function to compute its own
-\code{lambda} sequence. Inappropraite sequences may cause convergence
+\code{lambda} sequence. Inappropriate sequences may cause convergence
 problems.}
 
 \item{nlambda}{the number of lambda values. Must be at least 3.}
@@ -54,4 +62,3 @@ x <- matrix(rnorm(100*250), 100, 250)
 y <- x[, 1] + x[, 2] - x[, 1]*x[, 2] + x[, 3] + rnorm(100)
 out <- cvLassoBT(x, y, iter_max=10, nperms=2)
 }
-

@@ -98,12 +98,12 @@ IntegerVector which_indmax(LogicalVector violations, int p_eff) {
 // returns true if (inter1, inter2) is "less than" interactions[, col]
 bool check_less(int inter1, int inter2, int col, IntegerMatrix interactions) {
   if (inter1 < interactions(0, col)) return true;
-  if ((inter1 == interactions(0, col)) & (inter2 < interactions(1, col))) return true;
+  if ((inter1 == interactions(0, col)) && (inter2 < interactions(1, col))) return true;
   return false;
 }
 bool check_more(int inter1, int inter2, int col, IntegerMatrix interactions) {
   if (inter1 > interactions(0, col)) return true;
-  if ((inter1 == interactions(0, col)) & (inter2 > interactions(1, col))) return true;
+  if ((inter1 == interactions(0, col)) && (inter2 > interactions(1, col))) return true;
   return false;
 }
 

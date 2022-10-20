@@ -5,9 +5,14 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // scale_cen
 NumericMatrix scale_cen(NumericMatrix x, NumericVector scales, NumericVector centres, IntegerVector p, int p_max, IntegerVector var_names_main);
-RcppExport SEXP LassoBacktracking_scale_cen(SEXP xSEXP, SEXP scalesSEXP, SEXP centresSEXP, SEXP pSEXP, SEXP p_maxSEXP, SEXP var_names_mainSEXP) {
+RcppExport SEXP _LassoBacktracking_scale_cen(SEXP xSEXP, SEXP scalesSEXP, SEXP centresSEXP, SEXP pSEXP, SEXP p_maxSEXP, SEXP var_names_mainSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -23,7 +28,7 @@ END_RCPP
 }
 // change_dim
 int change_dim(IntegerVector dim, int p_eff);
-RcppExport SEXP LassoBacktracking_change_dim(SEXP dimSEXP, SEXP p_effSEXP) {
+RcppExport SEXP _LassoBacktracking_change_dim(SEXP dimSEXP, SEXP p_effSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -35,7 +40,7 @@ END_RCPP
 }
 // zero
 int zero(NumericMatrix beta, int l_start);
-RcppExport SEXP LassoBacktracking_zero(SEXP betaSEXP, SEXP l_startSEXP) {
+RcppExport SEXP _LassoBacktracking_zero(SEXP betaSEXP, SEXP l_startSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -47,7 +52,7 @@ END_RCPP
 }
 // in_log
 IntegerVector in_log(IntegerVector a, LogicalVector b);
-RcppExport SEXP LassoBacktracking_in_log(SEXP aSEXP, SEXP bSEXP) {
+RcppExport SEXP _LassoBacktracking_in_log(SEXP aSEXP, SEXP bSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -59,7 +64,7 @@ END_RCPP
 }
 // any_indmax
 bool any_indmax(LogicalVector violations, int p_eff);
-RcppExport SEXP LassoBacktracking_any_indmax(SEXP violationsSEXP, SEXP p_effSEXP) {
+RcppExport SEXP _LassoBacktracking_any_indmax(SEXP violationsSEXP, SEXP p_effSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -71,7 +76,7 @@ END_RCPP
 }
 // which_indmax
 IntegerVector which_indmax(LogicalVector violations, int p_eff);
-RcppExport SEXP LassoBacktracking_which_indmax(SEXP violationsSEXP, SEXP p_effSEXP) {
+RcppExport SEXP _LassoBacktracking_which_indmax(SEXP violationsSEXP, SEXP p_effSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -83,7 +88,7 @@ END_RCPP
 }
 // add_inter_orig
 int add_inter_orig(NumericMatrix X, NumericVector scales, NumericVector centres, int p_eff, IntegerMatrix inter_orig);
-RcppExport SEXP LassoBacktracking_add_inter_orig(SEXP XSEXP, SEXP scalesSEXP, SEXP centresSEXP, SEXP p_effSEXP, SEXP inter_origSEXP) {
+RcppExport SEXP _LassoBacktracking_add_inter_orig(SEXP XSEXP, SEXP scalesSEXP, SEXP centresSEXP, SEXP p_effSEXP, SEXP inter_origSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -98,7 +103,7 @@ END_RCPP
 }
 // add_inter
 int add_inter(NumericMatrix X, IntegerVector active_old, IntegerVector active_new, NumericVector scales, NumericVector centres, int p_eff, IntegerMatrix interactions, int p, IntegerMatrix inter_orig);
-RcppExport SEXP LassoBacktracking_add_inter(SEXP XSEXP, SEXP active_oldSEXP, SEXP active_newSEXP, SEXP scalesSEXP, SEXP centresSEXP, SEXP p_effSEXP, SEXP interactionsSEXP, SEXP pSEXP, SEXP inter_origSEXP) {
+RcppExport SEXP _LassoBacktracking_add_inter(SEXP XSEXP, SEXP active_oldSEXP, SEXP active_newSEXP, SEXP scalesSEXP, SEXP centresSEXP, SEXP p_effSEXP, SEXP interactionsSEXP, SEXP pSEXP, SEXP inter_origSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -117,7 +122,7 @@ END_RCPP
 }
 // inner_prod_abs_comp
 NumericVector inner_prod_abs_comp(NumericMatrix x, IntegerVector I, NumericMatrix y, int l0);
-RcppExport SEXP LassoBacktracking_inner_prod_abs_comp(SEXP xSEXP, SEXP ISEXP, SEXP ySEXP, SEXP l0SEXP) {
+RcppExport SEXP _LassoBacktracking_inner_prod_abs_comp(SEXP xSEXP, SEXP ISEXP, SEXP ySEXP, SEXP l0SEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -131,7 +136,7 @@ END_RCPP
 }
 // inner_prod_abs_comp2
 NumericVector inner_prod_abs_comp2(NumericMatrix x, LogicalVector I, NumericMatrix y, int p_eff, int l0);
-RcppExport SEXP LassoBacktracking_inner_prod_abs_comp2(SEXP xSEXP, SEXP ISEXP, SEXP ySEXP, SEXP p_effSEXP, SEXP l0SEXP) {
+RcppExport SEXP _LassoBacktracking_inner_prod_abs_comp2(SEXP xSEXP, SEXP ISEXP, SEXP ySEXP, SEXP p_effSEXP, SEXP l0SEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -146,7 +151,7 @@ END_RCPP
 }
 // any_ind
 bool any_ind(LogicalVector v, IntegerVector indices);
-RcppExport SEXP LassoBacktracking_any_ind(SEXP vSEXP, SEXP indicesSEXP) {
+RcppExport SEXP _LassoBacktracking_any_ind(SEXP vSEXP, SEXP indicesSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -158,7 +163,7 @@ END_RCPP
 }
 // beta_active
 int beta_active(NumericMatrix x, NumericMatrix beta, NumericMatrix resid_cur, IntegerVector active_set, int l, double thresh, int maxit, double lam, double alpha_lam, double alpha, double alpha_lam_div, double null_dev);
-RcppExport SEXP LassoBacktracking_beta_active(SEXP xSEXP, SEXP betaSEXP, SEXP resid_curSEXP, SEXP active_setSEXP, SEXP lSEXP, SEXP threshSEXP, SEXP maxitSEXP, SEXP lamSEXP, SEXP alpha_lamSEXP, SEXP alphaSEXP, SEXP alpha_lam_divSEXP, SEXP null_devSEXP) {
+RcppExport SEXP _LassoBacktracking_beta_active(SEXP xSEXP, SEXP betaSEXP, SEXP resid_curSEXP, SEXP active_setSEXP, SEXP lSEXP, SEXP threshSEXP, SEXP maxitSEXP, SEXP lamSEXP, SEXP alpha_lamSEXP, SEXP alphaSEXP, SEXP alpha_lam_divSEXP, SEXP null_devSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -180,7 +185,7 @@ END_RCPP
 }
 // find_l0
 int find_l0(NumericMatrix X, int p_eff_old, int p_eff, NumericMatrix resid_cur, int l0, NumericVector lambda);
-RcppExport SEXP LassoBacktracking_find_l0(SEXP XSEXP, SEXP p_eff_oldSEXP, SEXP p_effSEXP, SEXP resid_curSEXP, SEXP l0SEXP, SEXP lambdaSEXP) {
+RcppExport SEXP _LassoBacktracking_find_l0(SEXP XSEXP, SEXP p_eff_oldSEXP, SEXP p_effSEXP, SEXP resid_curSEXP, SEXP l0SEXP, SEXP lambdaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -193,4 +198,26 @@ BEGIN_RCPP
     rcpp_result_gen = Rcpp::wrap(find_l0(X, p_eff_old, p_eff, resid_cur, l0, lambda));
     return rcpp_result_gen;
 END_RCPP
+}
+
+static const R_CallMethodDef CallEntries[] = {
+    {"_LassoBacktracking_scale_cen", (DL_FUNC) &_LassoBacktracking_scale_cen, 6},
+    {"_LassoBacktracking_change_dim", (DL_FUNC) &_LassoBacktracking_change_dim, 2},
+    {"_LassoBacktracking_zero", (DL_FUNC) &_LassoBacktracking_zero, 2},
+    {"_LassoBacktracking_in_log", (DL_FUNC) &_LassoBacktracking_in_log, 2},
+    {"_LassoBacktracking_any_indmax", (DL_FUNC) &_LassoBacktracking_any_indmax, 2},
+    {"_LassoBacktracking_which_indmax", (DL_FUNC) &_LassoBacktracking_which_indmax, 2},
+    {"_LassoBacktracking_add_inter_orig", (DL_FUNC) &_LassoBacktracking_add_inter_orig, 5},
+    {"_LassoBacktracking_add_inter", (DL_FUNC) &_LassoBacktracking_add_inter, 9},
+    {"_LassoBacktracking_inner_prod_abs_comp", (DL_FUNC) &_LassoBacktracking_inner_prod_abs_comp, 4},
+    {"_LassoBacktracking_inner_prod_abs_comp2", (DL_FUNC) &_LassoBacktracking_inner_prod_abs_comp2, 5},
+    {"_LassoBacktracking_any_ind", (DL_FUNC) &_LassoBacktracking_any_ind, 2},
+    {"_LassoBacktracking_beta_active", (DL_FUNC) &_LassoBacktracking_beta_active, 12},
+    {"_LassoBacktracking_find_l0", (DL_FUNC) &_LassoBacktracking_find_l0, 6},
+    {NULL, NULL, 0}
+};
+
+RcppExport void R_init_LassoBacktracking(DllInfo *dll) {
+    R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
+    R_useDynamicSymbols(dll, FALSE);
 }

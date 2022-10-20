@@ -4,9 +4,17 @@
 \alias{LassoBT}
 \title{Fit linear models with interactions using the Lasso.}
 \usage{
-LassoBT(x, y, nlambda = 100L, iter_max = 1L,
-  lambda.min.ratio = ifelse(nobs < nvars, 0.01, 1e-04), lambda = NULL,
-  thresh = 1e-07, verbose = FALSE, inter_orig)
+LassoBT(
+  x,
+  y,
+  nlambda = 100L,
+  iter_max = 1L,
+  lambda.min.ratio = ifelse(nobs < nvars, 0.01, 1e-04),
+  lambda = NULL,
+  thresh = 1e-07,
+  verbose = FALSE,
+  inter_orig
+)
 }
 \arguments{
 \item{x}{input matrix of dimension nobs by nvars; each row is an observation
@@ -25,7 +33,7 @@ largest value at which all main effects coefficients are 0.}
 
 \item{lambda}{user supplied \code{lambda} sequence of decreasing penalty
 parameters. Typical usage is to allow the function to compute its own
-\code{lambda} sequence. Inappropraite sequences may cause convergence
+\code{lambda} sequence. Inappropriate sequences may cause convergence
 problems.}
 
 \item{thresh}{convergence threshold for coordinate descent. Each inner
@@ -85,12 +93,11 @@ y <- x[, 1] + x[, 2] - x[, 1]*x[, 2] + x[, 3] + rnorm(100)
 out <- LassoBT(x, y, iter_max=10)
 }
 \references{
-Shah, R. D. (2016) \emph{Modelling interactions in high-dimensional data with
-  Backtracking. JMLR, to appear.}
-  \url{http://www.statslab.cam.ac.uk/~rds37/papers/shah16.pdf}
+Shah, R. D. (2016) \emph{Shah, R. D. (2016) Modelling interactions in high-dimensional
+  data with Backtracking. JMLR, 17, 1-31}
+  \url{https://www.jmlr.org/papers/volume17/13-515/13-515.pdf}
 }
 \seealso{
 \code{\link{predict.BT}}, \code{\link{coef.BT}} methods and the \code{\link{cvLassoBT}}
   function.
 }
-

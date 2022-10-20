@@ -16,7 +16,7 @@
 #'   largest value at which all main effects coefficients are 0.
 #' @param lambda user supplied \code{lambda} sequence of decreasing penalty
 #'   parameters. Typical usage is to allow the function to compute its own
-#'   \code{lambda} sequence. Inappropraite sequences may cause convergence
+#'   \code{lambda} sequence. Inappropriate sequences may cause convergence
 #'   problems.
 #' @param thresh convergence threshold for coordinate descent. Each inner
 #'   coordinate descent loop continues until either the maximum change in the
@@ -60,7 +60,7 @@
 #' @references
 #'   Shah, R. D. (2016) \emph{Shah, R. D. (2016) Modelling interactions in high-dimensional
 #'   data with Backtracking. JMLR, 17, 1-31}
-#'   \url{www.jmlr.org/papers/volume17/13-515/13-515.pdf}
+#'   \url{https://www.jmlr.org/papers/volume17/13-515/13-515.pdf}
 #' @seealso
 #'   \code{\link{predict.BT}}, \code{\link{coef.BT}} methods and the \code{\link{cvLassoBT}}
 #'   function.
@@ -70,7 +70,7 @@
 #' out <- LassoBT(x, y, iter_max=10)
 #' @export
 #' @import Matrix
-#' @useDynLib LassoBacktracking
+#' @useDynLib LassoBacktracking, .registration=TRUE
 #' @importFrom Rcpp sourceCpp
 LassoBT <- function(x, y, nlambda=100L, iter_max=1L, lambda.min.ratio = ifelse(nobs < nvars, 0.01, 0.0001),
                     lambda=NULL, thresh=1e-07, verbose=FALSE, inter_orig) {
@@ -148,6 +148,7 @@ LassoBT <- function(x, y, nlambda=100L, iter_max=1L, lambda.min.ratio = ifelse(n
   var_names_main <- integer(p)
   # enlarged x matrix to which we will add interactions
   X <- scale_cen(x, scales, centres, p, p_max, var_names_main) # scales, centres and p can change
+  
   if (p < 1L)
     stop("x should be a matrix with at least one non-constant column")
   length(var_names_main) <- nvars <- p_eff_old <- p_eff <- p
@@ -203,7 +204,7 @@ LassoBT <- function(x, y, nlambda=100L, iter_max=1L, lambda.min.ratio = ifelse(n
   alpha_lam_div_vec <- 1 + lambda*(1-alpha)
   
   
-  # pat_lookup, iterations etc.
+  # path_lookup, iterations etc.
   path_lookup <- matrix(NA, nrow=nlambda, ncol=iter_max)
   path_lookup[, 1L] <- 1L
   # path_lookup[i, j] gives the the component of beta_all that will contain the coef for l=j, iter=i
@@ -222,7 +223,7 @@ LassoBT <- function(x, y, nlambda=100L, iter_max=1L, lambda.min.ratio = ifelse(n
   # coefficients
   beta_all <- vector(iter_max, mode="list")
   beta_cur <- matrix(0, nrow=p_max, ncol=nlambda)
-  beta_all[[1]] <- matrix(0, nrow=p_max, ncol=nlambda)
+  #beta_all[[1]] <- matrix(0, nrow=p_max, ncol=nlambda)
   a0 <- vector(iter_max, mode="list")
   a0[[1]] <- numeric(nlambda)
   
@@ -324,6 +325,7 @@ LassoBT <- function(x, y, nlambda=100L, iter_max=1L, lambda.min.ratio = ifelse(n
           
           p_eff_old <- p_eff
           # add interactions to X (since we know there is space)
+          browser()
           p_eff <- add_inter(X, interacting_mains, active_main_new, scales, centres, p_eff, interactions, p, inter_orig)
           
           inter_space <- p_max-p_eff
@@ -395,8 +397,10 @@ LassoBT <- function(x, y, nlambda=100L, iter_max=1L, lambda.min.ratio = ifelse(n
     rownames(beta_all[[k]]) <- var_names
     fit_all[[k]] <- as.matrix(X %*% beta_all[[k]]) + mean_y
     # rescale beta
-    beta_all[[k]] <- beta_all[[k]] / scales
-    a0[[k]] <- mean_y - colSums(beta_all[[k]]*centres)
+    # not sure why warnings occur
+    browser()
+    suppressWarnings(beta_all[[k]] <- beta_all[[k]] / scales)
+    suppressWarnings(a0[[k]] <- mean_y - colSums(beta_all[[k]]*centres))
     # This loop can be a little slow
     # Can make this part faster if necessary
     for (inter in seq_len(n_interactions[k])) {
