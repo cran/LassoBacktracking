@@ -325,7 +325,7 @@ LassoBT <- function(x, y, nlambda=100L, iter_max=1L, lambda.min.ratio = ifelse(n
           
           p_eff_old <- p_eff
           # add interactions to X (since we know there is space)
-          browser()
+          # browser()
           p_eff <- add_inter(X, interacting_mains, active_main_new, scales, centres, p_eff, interactions, p, inter_orig)
           
           inter_space <- p_max-p_eff
@@ -398,7 +398,7 @@ LassoBT <- function(x, y, nlambda=100L, iter_max=1L, lambda.min.ratio = ifelse(n
     fit_all[[k]] <- as.matrix(X %*% beta_all[[k]]) + mean_y
     # rescale beta
     # not sure why warnings occur
-    browser()
+    # browser()
     suppressWarnings(beta_all[[k]] <- beta_all[[k]] / scales)
     suppressWarnings(a0[[k]] <- mean_y - colSums(beta_all[[k]]*centres))
     # This loop can be a little slow
